@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University Class Timetable</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>University Class Timetable</h1>
+    <table id="timetable">
+      <thead>
+        <tr>
+          <th>Course Name</th>
+          <th>Room</th>
+          <th>Day</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      fetch("http://localhost:3000/api/timetable")
+        .then((response) => response.json())
+        .then((data) => {
+          const tableBody = document.querySelector("#timetable tbody");
+          data.forEach((row) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                        <td>${row.course_name}</td>
+                        <td>${row.room}</td>
+                        <td>${row.day_of_week}</td>
+                        <td>${row.start_time}</td>
+                        <td>${row.end_time}</td>
+                    `;
+            tableBody.appendChild(tr);
+          });
+        })
+        .catch((error) => console.error("Error:", error));
+    </script>
+  </body>
+</html>
