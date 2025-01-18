@@ -1,16 +1,43 @@
+
+const jwt = require('jsonwebtoken');
 const express = require('express');
 const db = require('../db_config');
+// const protected = require('../server');
 const router = express.Router();
+const adminProtected = require('../adminprotected');
+// import { adminProtected } from '../server';
+
+
+const isAuthenticated = (req, res, next) => {
+    const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
+    if (!token) {
+        return res.status(403).json({ success: false, message: "No token provided" });
+    }
+
+    jwt.verify(token, 'your_secret_key', (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ success: false, message: "You must be logged in to add schedules" });
+        }
+        req.user = decoded; // Attach decoded user data to request
+        next();
+    });
+};
 
 // Add a new class schedule
-router.post('/add', (req, res) => {
-    const { course_name, room, day_of_week, start_time, end_time } = req.body;
-    const sqlQuery = "INSERT INTO timetable (course_name, room, day_of_week, start_time, end_time) VALUES (?, ?, ?, ?, ?)";
-    db.query(sqlQuery, [course_name, room, day_of_week, start_time, end_time], (err, result) => {
+router.post('/add', isAuthenticated, adminProtected, (req, res) => {
+    const { course_name, room, day, start_time, end_time } = req.body;
+
+    if (!course_name || !room || !day || !start_time || !end_time) {
+        return res.status(400).json({ error: "All fields are required!" });
+    }
+
+    const sqlQuery = "INSERT INTO timetable (course_name, room, day, start_time, end_time) VALUES (?, ?, ?, ?, ?)";
+    db.query(sqlQuery, [course_name, room, day, start_time, end_time], (err, result) => {
         if (err) return res.status(500).send(err);
-        res.send("Class schedule added successfully!");
+        res.json({ message: "Class schedule added successfully!" });
     });
 });
+
 
 // Delete a class schedule by ID
 router.delete('/delete/:id', (req, res) => {
@@ -18,7 +45,7 @@ router.delete('/delete/:id', (req, res) => {
     const sqlQuery = "DELETE FROM timetable WHERE id = ?";
     db.query(sqlQuery, [id], (err, result) => {
         if (err) return res.status(500).send(err);
-        res.send("Class schedule deleted successfully!");
+        res.json({ message: "schedule deleted successfully" });
     });
 });
 

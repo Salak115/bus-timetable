@@ -7,38 +7,85 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>University Class Timetable</h1>
-    <table id="timetable">
-      <thead>
-        <tr>
-          <th>Course Name</th>
-          <th>Room</th>
-          <th>Day</th>
-          <th>Start Time</th>
-          <th>End Time</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div class="btn">
+      <button type="button"> <a href="./admin_login.html">Login</a></button>
+      <button type="button"> <a href="./admin.html">Logout</a></button>
 
+
+      <button type="button" class="index_add_btn"><a href="./add.html">Add timetable</a> </button>
+    </div>
+
+
+    <h1>University Class Timetable</h1>
+      
+      <table id="timetable">
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Room</th>
+            <th>Day</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Operations</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <h2 class="display"></h2>
+      
     <script>
-      fetch("http://localhost:3000/api/timetable")
-        .then((response) => response.json())
-        .then((data) => {
-          const tableBody = document.querySelector("#timetable tbody");
+      const tableBody = document.querySelector("#timetable tbody");
+
+
+        fetch("http://localhost:3000/schedules").then((response) => response.json()).then((data) => {
+          console.log(data);
           data.forEach((row) => {
+
+            if (row.length <= 1) {
+              document.querySelector('.display').innerHTML = 'No schedule display'
+            }
+
+
             const tr = document.createElement("tr");
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete_btn";
+            deleteButton.addEventListener("click", () => {
+              deleteSchedule(row.id);
+            });
             tr.innerHTML = `
-                        <td>${row.course_name}</td>
-                        <td>${row.room}</td>
-                        <td>${row.day_of_week}</td>
-                        <td>${row.start_time}</td>
-                        <td>${row.end_time}</td>
-                    `;
-            tableBody.appendChild(tr);
+<td>${row.course_name}</td>
+<td>${row.room}</td>
+<td>${row.day}</td>
+<td>${row.start_time}</td>
+<td>${row.end_time}</td>
+
+`;
+            const td = document.createElement("td");
+            td.appendChild(deleteButton)
+            tr.appendChild(td);
+            tableBody.appendChild(tr)
+
+              
           });
-        })
-        .catch((error) => console.error("Error:", error));
+        }).catch((error) => console.error("Error:", error));
+        
+
+        function deleteSchedule(id) {
+          fetch(`http://localhost:3000/delete/${id}`, {
+            method: "DELETE",
+          })
+            .then((response) => {
+              if (response.ok) {
+                alert("Schedule deleted successfully!");
+                window.location.reload(); // Refresh the table
+              } else {
+                alert("Failed to delete the schedule.");
+              }
+            })
+            .catch((err) => console.error("Error during deletion:", err));
+        }
     </script>
   </body>
 </html>

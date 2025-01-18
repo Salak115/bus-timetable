@@ -6,22 +6,23 @@
     <title>Admin Login</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <h1>Admin Login</h1>
+  <body class="add_body">
+    <div class="add"><h1>Admin Login</h1>
     <form id="loginForm">
       <label for="username">Username:</label>
       <input type="text" id="username" required /><br />
       <label for="password">Password:</label>
       <input type="password" id="password" required /><br />
-      <button type="submit">Login</button>
+      <button type="submit" class="add_btn">Login</button>
     </form>
-    <p id="status"></p>
+    <p id="status"></p></div>
+    <!-- <h1 id="loading">Loading...</h1> -->
+    
 
-    > +
     <script>
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
+
+
+      document.getElementById("loginForm").addEventListener("submit", function (e) {
           e.preventDefault();
           const data = {
             username: document.getElementById("username").value,
@@ -33,14 +34,24 @@
             body: JSON.stringify(data),
             credentials: "include",
           })
-            .then((response) => response.json())
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Login failed");
+              }
+              return response.json();
+            })
             .then((data) => {
-              document.getElementById("status").innerText = data.message;
+              console.log("Login response:", data); // Log response for debugging
               if (data.message === "Login successful") {
-                window.location.href = "admin.html";
+                window.location.href = "/university-timetable/frontend/index.html"; // Redirect to index
+              } else {
+                document.getElementById("status").innerText = data.message;
               }
             })
-            .catch((error) => console.error("Error:", error));
+            .catch((error) => {
+              console.error("Error during login:", error);
+              document.getElementById("status").innerText = "Login failed.";
+            });
         });
     </script>
   </body>
