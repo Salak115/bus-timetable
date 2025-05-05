@@ -7,38 +7,40 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="add_body">
-    <div class="add"><h1>Are you sure you want to log out</h1>
+    <div class="add">
+      <h1>Are you sure you want to log out</h1>
       <div class="log_btn">
         <button type="button" class="btn1" id="logoutButton">Logout</button>
-        <button type="button" class="btn2"><a href="./index.html">Cancel</a></button>
+        <button type="button" class="btn2">
+          <a href="./index.html">Cancel</a>
+        </button>
       </div>
-    
-</div>
-    
-    <script>
-                document
-                    .getElementById("logoutButton")
-                    .addEventListener("click", function () {
-                      fetch("http://localhost:3000/api/admin/logout", {
-                        method: "POST",
-                        credentials: "include",
-                      })
-                        .then((response) => response.json())
-                        .then((message) => {
-                          alert(message.message);
-                          window.location.href = "index.html";
-                        })
-                        .catch((error) => console.error("Error:", error));
-                    });
+    </div>
 
-                  // fetch("http://localhost:3000/api/admin/protected", {
-                  //   credentials: "include",
-                  // }).then((response) => {
-                  //   if (response.status !== 200) {
-                  //     alert("Access denied! Redirecting to login.");
-                  //     window.location.href = "admin_login.html";
-                  //   }
-                  // });
+    <script>
+      document
+        .getElementById("logoutButton")
+        .addEventListener("click", function () {
+          fetch("http://localhost:3000/api/admin/logout", {
+            method: "POST",
+            credentials: "include",
+          })
+            .then((response) => response.json())
+            .then((message) => {
+              alert(message.message);
+              window.location.href = "index.html";
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+
+      // fetch("http://localhost:3000/api/admin/protected", {
+      //   credentials: "include",
+      // }).then((response) => {
+      //   if (response.status !== 200) {
+      //     alert("Access denied! Redirecting to login.");
+      //     window.location.href = "admin_login.html";
+      //   }
+      // });
     </script>
   </body>
 </html>

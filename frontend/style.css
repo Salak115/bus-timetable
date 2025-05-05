@@ -137,21 +137,31 @@ label {
   }
 }
 
-.log_btn{
+.log_btn {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.btn1, .btn2{
+.btn1,
+.btn2 {
   border: 2px solid #f2f2f2;
   color: #121212;
 }
 
-.btn1{
+.btn1 {
   background-color: #e90606;
 }
 
-.btn2{
+.btn2 {
   background-color: #00ff00d8;
+}
+
+.banner {
+  /* background-color: red; */
+  min-height: 100vh;
+  background-image: url("../images/sch bus.jpg");
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.3);
 }
