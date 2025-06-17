@@ -9,14 +9,14 @@
   <body class="banner">
     <div class="btn">
       <button type="button"><a href="./admin_login.html">Login</a></button>
-      <button type="button"><a href="./admin.html">Logout</a></button>
+      <button class="lgbtn" type="button" style="background-color: red;"><a style="color: white;" href="./admin.html">Logout</a></button>
 
       <button type="button" class="index_add_btn">
         <a href="./add.html">Add timetable</a>
       </button>
     </div>
 
-    <h1 style="color: white">School bus Class Timetable</h1>
+    <h1 style="color:white">ATM BUS TIMETABLE</h1>
 
     <table id="timetable">
       <thead>
@@ -86,7 +86,7 @@
             } else if (response.status === 403) {
               alert("You are not authenticated. Please login first.");
               window.location.href =
-                "/university-timetable/frontend/admin_login.html";
+                "/bus-timetable/frontend/admin_login.html";
             } else {
               alert("Failed to delete the schedule.");
             }

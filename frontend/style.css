@@ -34,16 +34,19 @@ th {
   justify-content: center;
   column-gap: 8px;
 }
-
+.lgbtn{
+  color: red;
+}
 button {
   padding: 10px;
   text-align: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border: 2px solid #121212;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 20px;
   outline: none;
   border: none;
+  color: red;
 }
 
 .cont {
@@ -160,7 +163,7 @@ label {
 .banner {
   /* background-color: red; */
   min-height: 100vh;
-  background-image: url("../images/sch bus.jpg");
+  background-image: url("../images/atmbus.jpeg");
   background-position: center;
   background-size: cover;
   background-color: rgba(0, 0, 0, 0.3);

@@ -38,7 +38,7 @@ app.use(
 
 // Dummy admin user
 const adminUser = {
-  username: "Emmanuel",
+  username: "victor",
   role: "admin",
   password: bcrypt.hashSync("password123", 10),
 };
