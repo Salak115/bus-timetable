@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Login</title>
+    <title>Admin login</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="add_body">
@@ -56,5 +56,56 @@
             });
         });
     </script>
-  </body>
-</html>
+   <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      font-family: sans-serif;
+    }
+  
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Smooth transition for all elements */
+input, button {
+  transition: all 0.3s ease;
+}
+
+/* Input focus effect */
+input:focus {
+  outline: none;
+  border: 2px solid #7a1fff;
+  box-shadow: 0 0 8px #a96fff;
+  background-color: #f9faff;
+}
+
+/* Button hover effect */
+button {
+  background-color: white;
+  color: #7a1fff;
+  border: 2px solid #7a1fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #7a1fff;
+  color: white;
+  box-shadow: 0 4px 15px rgba(122, 31, 255, 0.4);
+  transform: scale(1.05);
+}
+
+  </style>
+  
+   

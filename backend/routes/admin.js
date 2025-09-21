@@ -28,19 +28,19 @@ const isAuthenticated = (req, res, next) => {
 
 // Add a new class schedule
 router.post("/add", isAuthenticated, adminProtected, (req, res) => {
-  const { bus_name, day, start_time, end_time } = req.body;
+  const { bus_name, room ,day, start_time, end_time } = req.body;
 
-  if (!bus_name || !day || !start_time || !end_time) {
+  if (!bus_name ||  !room || !day || !start_time || !end_time) {
     return res.status(400).json({ error: "All fields are required!" });
   }
 
   const sqlQuery =
-    "INSERT INTO timetable (bus_name, day, start_time, end_time) VALUES (?, ?, ?, ?)";
-  db.query(sqlQuery, [bus_name, day, start_time, end_time], (err, result) => {
+    "INSERT INTO timetable (bus_name,room, day, start_time, end_time) VALUES (?, ?, ?, ?,?)";
+  db.query(sqlQuery, [bus_name,room, day, start_time, end_time], (err, result) => {
     if (err) return res.status(500).send(err);
     res.json({ message: "Class schedule added successfully!" });
   });
-});
+});                                             
 
 // Delete a class schedule by ID
 router.delete("/delete/:id", isAuthenticated, (req, res) => {

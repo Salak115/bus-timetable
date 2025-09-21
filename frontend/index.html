@@ -3,26 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>School Bus Class Timetable</title>
+    <title>School Class Timetable</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="banner">
     <div class="btn">
-      <button type="button"><a href="./admin_login.html">Login</a></button>
-      <button class="lgbtn" type="button" style="background-color: red;"><a style="color: white;" href="./admin.html">Logout</a></button>
+      
 
-      <button type="button" class="index_add_btn">
-        <a href="./add.html">Add timetable</a>
-      </button>
+      <div class="menu_btn">
+        
+        <button type="button" class="btn2">
+          <a href="menu.html">menu</a>
+        </button>
+      </div>
     </div>
 
-    <h1 style="color:white">ATM BUS TIMETABLE</h1>
+
+    
+      
+    <h1 style="color: blueviolet">University Class Timetable</h1>
 
     <table id="timetable">
       <thead>
         <tr>
-          <th>Bus Name</th>
+          <th>Course Name</th>
           <!-- <th>Room</th> -->
+          <th>Room</th>
           <th>Day</th>
           <th>Start Time</th>
           <th>End Time</th>
@@ -58,6 +64,7 @@
             });
             tr.innerHTML = `
 <td>${row.bus_name}</td>
+<td>${row.room}</td>
 <td>${row.day}</td>
 <td>${row.start_time}</td>
 <td>${row.end_time}</td>
@@ -96,3 +103,44 @@
     </script>
   </body>
 </html>
+<style>
+  /* Button hover effect */
+button {
+  background-color: white;
+  color: #7a1fff;
+  border: 2px solid #7a1fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #7a1fff;
+  color: white;
+  box-shadow: 0 4px 15px rgba(122, 31, 255, 0.4);
+  transform: scale(1.05);
+}
+/* Main table container */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  margin: 30px auto;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Header row */
+th {
+  background-color: #f5f5f5;
+  padding: 16px;
+  text-align: center;
+  font-weight: 600;
+  color: #4a4a4a;
+  border-bottom: 2px solid #ddd;
+}
+

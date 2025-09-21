@@ -9,12 +9,20 @@
 
   <body class="add_body">
     <div class="add">
-      <h1>Create Bus Schedule</h1>
+      <h1>Create  Schedule</h1>
       <form id="scheduleForm">
         <!-- Bus Name -->
-        <label for="bus_name">Bus name:</label>
+        <label for="Course">Course:</label>
         <input type="text" id="bus_name" name="bus_name" required />
         <br /><br />
+
+        <label for="Room">Room:</label>
+        <input type="text" id="room" name="room" required />
+        <br /><br />
+
+
+
+
 
         <!-- Day of the Week -->
         <label for="day_of_week">Days:</label>
@@ -50,6 +58,7 @@
         // Collect form data
         const formData = {
           bus_name: document.getElementById("bus_name").value,
+          room: document.getElementById("room").value,
           day: document.getElementById("day").value,
           start_time: document.getElementById("start_time").value,
           end_time: document.getElementById("end_time").value,
@@ -88,5 +97,50 @@
         }
       });
     </script>
-  </body>
-</html>
+   <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      font-family: sans-serif;
+    }
+  
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Button hover effect */
+button {
+  background-color: white;
+  color: #7a1fff;
+  border: 2px solid #7a1fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #7a1fff;
+  color: white;
+  box-shadow: 0 4px 15px rgba(122, 31, 255, 0.4);
+  transform: scale(1.05);
+}
+.wave {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+  background: url('wave.svg') no-repeat;
+  background-size: cover;
+}
+
+  </style>
+   
